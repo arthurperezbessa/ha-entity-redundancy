@@ -3,9 +3,9 @@
   "name": "Fallback Entity",
   "version": "1.0.0",
   "config_flow": true,
-  "documentation": "https://github.com/yourusername/Home-Assistant-Fallback-Entity",
-  "issue_tracker": "https://github.com/yourusername/Home-Assistant-Fallback-Entity/issues",
+  "documentation": "https://github.com/arthurperezbessa/ha-entity-redundancy",
+  "issue_tracker": "https://github.com/arthurperezbessa/ha-entity-redundancy/issues",
   "iot_class": "local_push",
   "requirements": [],
-  "codeowners": []
+  "codeowners": ["@arthurperezbessa"]
 }

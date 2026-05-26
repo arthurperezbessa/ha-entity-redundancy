@@ -1,6 +1,6 @@
 # Fallback Entity
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/arthurperezbessa/ha-entity-redundancy)
 
 A Home Assistant custom integration that creates a virtual **switch** or **light** entity with automatic fallback logic. When the primary entity becomes unavailable, it transparently switches to the fallback entity — and switches back as soon as the primary recovers.
 
@@ -26,7 +26,7 @@ An `active_entity` attribute is exposed so you can see in the UI which source is
 ### Via HACS (recommended)
 
 1. Open HACS → **Integrations** → ⋮ menu → **Custom repositories**
-2. Add the URL of this repository and select category **Integration**
+2. Add `https://github.com/arthurperezbessa/ha-entity-redundancy` and select category **Integration**
 3. Install **Fallback Entity** and restart Home Assistant
 
 ### Manual
