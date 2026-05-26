@@ -7,7 +7,14 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event
 
-from .const import CONF_FALLBACK, CONF_PRIMARY, UNAVAILABLE_STATES
+from .const import (
+    CONF_ENTITY_TYPE,
+    CONF_FALLBACK,
+    CONF_PAIR_ID,
+    CONF_PAIRS,
+    CONF_PRIMARY,
+    UNAVAILABLE_STATES,
+)
 
 
 async def async_setup_entry(
@@ -15,18 +22,25 @@ async def async_setup_entry(
     entry: ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    async_add_entities([FallbackLight(entry)])
+    pairs = entry.options.get(CONF_PAIRS, [])
+    async_add_entities(
+        [
+            FallbackLight(entry.entry_id, pair)
+            for pair in pairs
+            if pair[CONF_ENTITY_TYPE] == "light"
+        ]
+    )
 
 
 class FallbackLight(LightEntity):
     _attr_should_poll = False
     _attr_has_entity_name = False
 
-    def __init__(self, entry: ConfigEntry) -> None:
-        self._primary: str = entry.data[CONF_PRIMARY]
-        self._fallback: str = entry.data[CONF_FALLBACK]
-        self._attr_name: str = entry.data["name"]
-        self._attr_unique_id: str = entry.entry_id
+    def __init__(self, entry_id: str, pair: dict) -> None:
+        self._primary: str = pair[CONF_PRIMARY]
+        self._fallback: str = pair[CONF_FALLBACK]
+        self._attr_name: str = pair["name"]
+        self._attr_unique_id: str = f"{entry_id}_{pair[CONF_PAIR_ID]}"
 
     @property
     def _active_entity(self) -> str:

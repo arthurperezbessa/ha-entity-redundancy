@@ -2,15 +2,11 @@
   "config": {
     "step": {
       "user": {
-        "title": "Entidade Fallback — Tipo de entidade",
-        "data": {
-          "entity_type": "Tipo de entidade"
-        }
-      },
-      "entities": {
-        "title": "Entidade Fallback — Configurar",
+        "title": "Adicionar primeira entidade",
+        "description": "Crie a primeira entidade com redundância. Mais entidades podem ser adicionadas depois nas opções da integração.",
         "data": {
           "name": "Nome",
+          "entity_type": "Tipo da entidade resultante",
           "primary_entity": "Entidade primária",
           "fallback_entity": "Entidade de fallback"
         },
@@ -25,6 +21,65 @@
     },
     "abort": {
       "already_configured": "Esta entrada já está configurada."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "menu_options": {
+          "add_entity": "Adicionar entidade",
+          "edit_entity": "Editar entidade",
+          "remove_entity": "Remover entidade",
+          "import_json": "Importar via JSON"
+        }
+      },
+      "add_entity": {
+        "title": "Adicionar entidade",
+        "data": {
+          "name": "Nome",
+          "entity_type": "Tipo da entidade resultante",
+          "primary_entity": "Entidade primária",
+          "fallback_entity": "Entidade de fallback"
+        },
+        "data_description": {
+          "entity_type": "O tipo da entidade virtual criada (independente do tipo das fontes).",
+          "primary_entity": "Usada quando disponível (ex: LocalTuya).",
+          "fallback_entity": "Usada quando a primária está indisponível (ex: Tuya cloud)."
+        }
+      },
+      "edit_entity": {
+        "title": "Selecione a entidade para editar",
+        "data": {
+          "pair_id": "Entidade"
+        }
+      },
+      "edit_entity_form": {
+        "title": "Editar entidade",
+        "data": {
+          "name": "Nome",
+          "entity_type": "Tipo da entidade resultante",
+          "primary_entity": "Entidade primária",
+          "fallback_entity": "Entidade de fallback"
+        }
+      },
+      "remove_entity": {
+        "title": "Remover entidade",
+        "description": "A entidade será removida do Home Assistant.",
+        "data": {
+          "pair_id": "Entidade a remover"
+        }
+      },
+      "import_json": {
+        "title": "Importar via JSON",
+        "description": "Cole um array JSON. Cada item deve ter: `name`, `entity_type` (`switch` ou `light`), `primary_entity`, `fallback_entity`.\n\nExemplo:\n```json\n[\n  {\n    \"name\": \"Banheiro\",\n    \"entity_type\": \"switch\",\n    \"primary_entity\": \"switch.banheiro_local\",\n    \"fallback_entity\": \"switch.banheiro_cloud\"\n  }\n]\n```",
+        "data": {
+          "json_data": "JSON"
+        }
+      }
+    },
+    "error": {
+      "same_entity": "A entidade primária e a de fallback devem ser diferentes.",
+      "invalid_json": "JSON inválido. Verifique o formato e tente novamente."
     }
   }
 }

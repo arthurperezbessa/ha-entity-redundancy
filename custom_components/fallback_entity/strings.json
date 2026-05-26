@@ -2,20 +2,16 @@
   "config": {
     "step": {
       "user": {
-        "title": "Fallback Entity — Entity Type",
-        "data": {
-          "entity_type": "Entity type"
-        }
-      },
-      "entities": {
-        "title": "Fallback Entity — Configure",
+        "title": "Add first entity",
+        "description": "Create the first redundant entity. More can be added later via the integration options.",
         "data": {
           "name": "Name",
+          "entity_type": "Result entity type",
           "primary_entity": "Primary entity",
           "fallback_entity": "Fallback entity"
         },
         "data_description": {
-          "primary_entity": "Used when available (e.g. LocalTuya). If unavailable, the fallback is used.",
+          "primary_entity": "Used when available (e.g. LocalTuya). If it becomes unavailable, the fallback takes over.",
           "fallback_entity": "Used when the primary is unavailable (e.g. Tuya cloud)."
         }
       }
@@ -25,6 +21,65 @@
     },
     "abort": {
       "already_configured": "This entry is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "menu_options": {
+          "add_entity": "Add entity",
+          "edit_entity": "Edit entity",
+          "remove_entity": "Remove entity",
+          "import_json": "Import from JSON"
+        }
+      },
+      "add_entity": {
+        "title": "Add entity",
+        "data": {
+          "name": "Name",
+          "entity_type": "Result entity type",
+          "primary_entity": "Primary entity",
+          "fallback_entity": "Fallback entity"
+        },
+        "data_description": {
+          "entity_type": "The type of the virtual entity that will be created (independent of the source entities).",
+          "primary_entity": "Used when available (e.g. LocalTuya).",
+          "fallback_entity": "Used when the primary is unavailable (e.g. Tuya cloud)."
+        }
+      },
+      "edit_entity": {
+        "title": "Select entity to edit",
+        "data": {
+          "pair_id": "Entity"
+        }
+      },
+      "edit_entity_form": {
+        "title": "Edit entity",
+        "data": {
+          "name": "Name",
+          "entity_type": "Result entity type",
+          "primary_entity": "Primary entity",
+          "fallback_entity": "Fallback entity"
+        }
+      },
+      "remove_entity": {
+        "title": "Remove entity",
+        "description": "The entity will be removed from Home Assistant.",
+        "data": {
+          "pair_id": "Entity to remove"
+        }
+      },
+      "import_json": {
+        "title": "Import from JSON",
+        "description": "Paste a JSON array. Each item must have: `name`, `entity_type` (`switch` or `light`), `primary_entity`, `fallback_entity`.\n\nExample:\n```json\n[\n  {\n    \"name\": \"Banheiro\",\n    \"entity_type\": \"switch\",\n    \"primary_entity\": \"switch.banheiro_local\",\n    \"fallback_entity\": \"switch.banheiro_cloud\"\n  }\n]\n```",
+        "data": {
+          "json_data": "JSON"
+        }
+      }
+    },
+    "error": {
+      "same_entity": "Primary and fallback entities must be different.",
+      "invalid_json": "Invalid JSON. Check the format and try again."
     }
   }
 }
