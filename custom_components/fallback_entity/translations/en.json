@@ -1,0 +1,30 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Fallback Entity — Entity Type",
+        "data": {
+          "entity_type": "Entity type"
+        }
+      },
+      "entities": {
+        "title": "Fallback Entity — Configure",
+        "data": {
+          "name": "Name",
+          "primary_entity": "Primary entity",
+          "fallback_entity": "Fallback entity"
+        },
+        "data_description": {
+          "primary_entity": "Used when available (e.g. LocalTuya). If unavailable, the fallback is used.",
+          "fallback_entity": "Used when the primary is unavailable (e.g. Tuya cloud)."
+        }
+      }
+    },
+    "error": {
+      "same_entity": "Primary and fallback entities must be different."
+    },
+    "abort": {
+      "already_configured": "This entry is already configured."
+    }
+  }
+}

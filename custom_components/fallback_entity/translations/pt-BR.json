@@ -1,0 +1,30 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Entidade Fallback — Tipo de entidade",
+        "data": {
+          "entity_type": "Tipo de entidade"
+        }
+      },
+      "entities": {
+        "title": "Entidade Fallback — Configurar",
+        "data": {
+          "name": "Nome",
+          "primary_entity": "Entidade primária",
+          "fallback_entity": "Entidade de fallback"
+        },
+        "data_description": {
+          "primary_entity": "Usada quando disponível (ex: LocalTuya). Se ficar indisponível, o fallback assume.",
+          "fallback_entity": "Usada quando a primária está indisponível (ex: Tuya cloud)."
+        }
+      }
+    },
+    "error": {
+      "same_entity": "A entidade primária e a de fallback devem ser diferentes."
+    },
+    "abort": {
+      "already_configured": "Esta entrada já está configurada."
+    }
+  }
+}
