@@ -265,6 +265,7 @@ class FallbackEntityOptionsFlow(config_entries.OptionsFlow):
                                 CONF_ENTITY_TYPE: item[CONF_ENTITY_TYPE],
                                 CONF_PRIMARY: item[CONF_PRIMARY],
                                 CONF_FALLBACK: item[CONF_FALLBACK],
+                                CONF_ENTITY_ID: item.get(CONF_ENTITY_ID, ""),
                             }
                         )
                     )

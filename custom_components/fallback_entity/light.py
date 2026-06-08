@@ -43,6 +43,8 @@ class FallbackLight(LightEntity):
         self._attr_name: str = pair["name"]
         self._attr_unique_id: str = f"{entry_id}_{pair[CONF_PAIR_ID]}"
         self._desired_entity_id: str | None = pair.get(CONF_ENTITY_ID)
+        if self._desired_entity_id:
+            self.entity_id = self._desired_entity_id
 
     @property
     def _active_entity(self) -> str:
