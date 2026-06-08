@@ -1,7 +1,7 @@
 {
   "domain": "fallback_entity",
   "name": "Fallback Entity",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "config_flow": true,
   "documentation": "https://github.com/arthurperezbessa/ha-entity-redundancy",
   "issue_tracker": "https://github.com/arthurperezbessa/ha-entity-redundancy/issues",
