@@ -8,11 +8,13 @@
           "name": "Nome",
           "entity_type": "Tipo da entidade resultante",
           "primary_entity": "Entidade primária",
-          "fallback_entity": "Entidade de fallback"
+          "fallback_entity": "Entidade de fallback",
+          "entity_id": "Entity ID (opcional)"
         },
         "data_description": {
           "primary_entity": "Usada quando disponível (ex: LocalTuya). Se ficar indisponível, o fallback assume.",
-          "fallback_entity": "Usada quando a primária está indisponível (ex: Tuya cloud)."
+          "fallback_entity": "Usada quando a primária está indisponível (ex: Tuya cloud).",
+          "entity_id": "Força um entity_id específico (ex: switch.minha_luz). Deixe em branco para gerar automaticamente."
         }
       }
     },

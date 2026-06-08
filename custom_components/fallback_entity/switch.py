@@ -8,6 +8,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event
 
 from .const import (
+    CONF_ENTITY_ID,
     CONF_ENTITY_TYPE,
     CONF_FALLBACK,
     CONF_PAIR_ID,
@@ -41,6 +42,7 @@ class FallbackSwitch(SwitchEntity):
         self._fallback: str = pair[CONF_FALLBACK]
         self._attr_name: str = pair["name"]
         self._attr_unique_id: str = f"{entry_id}_{pair[CONF_PAIR_ID]}"
+        self._desired_entity_id: str | None = pair.get(CONF_ENTITY_ID)
 
     @property
     def _active_entity(self) -> str:
@@ -90,6 +92,15 @@ class FallbackSwitch(SwitchEntity):
                 self._handle_state_change,
             )
         )
+        if self._desired_entity_id and self.entity_id != self._desired_entity_id:
+            from homeassistant.helpers import entity_registry as er
+            ent_reg = er.async_get(self.hass)
+            try:
+                ent_reg.async_update_entity(
+                    self.entity_id, new_entity_id=self._desired_entity_id
+                )
+            except Exception:
+                pass
 
     @callback
     def _handle_state_change(self, event) -> None:

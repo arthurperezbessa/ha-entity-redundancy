@@ -8,11 +8,13 @@
           "name": "Name",
           "entity_type": "Result entity type",
           "primary_entity": "Primary entity",
-          "fallback_entity": "Fallback entity"
+          "fallback_entity": "Fallback entity",
+          "entity_id": "Entity ID (optional)"
         },
         "data_description": {
           "primary_entity": "Used when available (e.g. LocalTuya). If it becomes unavailable, the fallback takes over.",
-          "fallback_entity": "Used when the primary is unavailable (e.g. Tuya cloud)."
+          "fallback_entity": "Used when the primary is unavailable (e.g. Tuya cloud).",
+          "entity_id": "Force a specific entity_id (e.g. switch.my_light). Leave blank to auto-generate."
         }
       }
     },
