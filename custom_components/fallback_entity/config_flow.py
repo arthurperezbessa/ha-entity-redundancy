@@ -9,6 +9,7 @@ from homeassistant.core import callback
 from homeassistant.helpers import selector
 
 from .const import (
+    CONF_ENTITY_ID,
     CONF_ENTITY_TYPE,
     CONF_FALLBACK,
     CONF_PAIR_ID,
@@ -31,18 +32,27 @@ _PAIR_FORM_SCHEMA = vol.Schema(
         vol.Required(CONF_FALLBACK): selector.EntitySelector(
             selector.EntitySelectorConfig(domain=_ENTITY_DOMAINS)
         ),
+        vol.Optional(CONF_ENTITY_ID, default=""): selector.TextSelector(
+            selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
+        ),
     }
 )
 
 
 def _build_pair(user_input: dict, pair_id: str | None = None) -> dict:
-    return {
+    pair: dict = {
         CONF_PAIR_ID: pair_id or str(uuid.uuid4()),
         "name": user_input["name"],
         CONF_ENTITY_TYPE: user_input[CONF_ENTITY_TYPE],
         CONF_PRIMARY: user_input[CONF_PRIMARY],
         CONF_FALLBACK: user_input[CONF_FALLBACK],
     }
+    entity_id = user_input.get(CONF_ENTITY_ID, "")
+    if isinstance(entity_id, str):
+        entity_id = entity_id.strip()
+    if entity_id:
+        pair[CONF_ENTITY_ID] = entity_id
+    return pair
 
 
 class FallbackEntityConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
@@ -190,6 +200,11 @@ class FallbackEntityOptionsFlow(config_entries.OptionsFlow):
                         CONF_FALLBACK, default=current[CONF_FALLBACK]
                     ): selector.EntitySelector(
                         selector.EntitySelectorConfig(domain=_ENTITY_DOMAINS)
+                    ),
+                    vol.Optional(
+                        CONF_ENTITY_ID, default=current.get(CONF_ENTITY_ID, "")
+                    ): selector.TextSelector(
+                        selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
                     ),
                 }
             ),
